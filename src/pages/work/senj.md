@@ -5,6 +5,9 @@ subTitle: 'سنج Senj: Afghan wood framing technology'
 pubDate: 2024-11-25
 links: 'https://eartharchitecture.org/?p=1887'
 tags: ["research","architecture"]
+coverImg:
+    url: '../images/work/senj/0.jpg'
+    alt: 'The Astro logo on a dark background with a pink glow.'
 ---
 
 # Senj

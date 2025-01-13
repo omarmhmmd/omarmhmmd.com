@@ -1,15 +1,32 @@
 ---
+import { Image } from "astro:assets";
 const { frontmatter } = Astro.props;
 import BaseLayout from "./BaseLayout.astro";
 ---
 
+<style>
+  .container {
+  }
+  .frontMatter {
+    margin: var(--m-1);
+  }
+</style>
+
+</li>
+
 <BaseLayout>
-  <h1>{frontmatter.title}</h1>
-  <div>
-    {frontmatter.tags.map((tag: string) => (
-      <a href={`/tags/${tag}`}>{tag}</a>
-    ))}
+  <div class="container">
+    <div class="frontMatter">
+      <h1>{frontmatter.title}</h1>
+      <div>
+        {" "}
+        {frontmatter.title}{" "}
+        {frontmatter.tags.map((tag: any) => `[${tag}]`).join(" ")}{" "}
+        {new Date(frontmatter.pubDate).getFullYear()}
+      </div>
+      <a href={frontmatter.links}>{frontmatter.links}</a>
+    </div>
+    <img src={frontmatter.coverImg.url} alt="A bird." />
+    <slot />
   </div>
-  <a href={frontmatter.links}>{frontmatter.links}</a>
-  <slot />
 </BaseLayout>

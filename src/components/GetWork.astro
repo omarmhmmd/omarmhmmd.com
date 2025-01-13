@@ -34,6 +34,7 @@ allWork.sort((a, b) => {
             {" "}
             {post.frontmatter.title}{" "}
             {post.frontmatter.tags.map((tag: any) => `[${tag}]`).join(" ")}{" "}
+            {new Date(post.frontmatter.pubDate).getFullYear()}
           </a>
         </li>
       ))
