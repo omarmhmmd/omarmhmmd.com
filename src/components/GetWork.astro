@@ -1,0 +1,42 @@
+---
+import "../styles/global.css";
+
+type Post = {
+  frontmatter: {
+    pubDate: string; // Ensure pubDate is a string since it's parsed as a date
+  };
+};
+
+const allWork = Object.values(
+  import.meta.glob<Post>("../pages/work/*.md", { eager: true })
+);
+
+allWork.sort((a, b) => {
+  const dateA = new Date(a.frontmatter.pubDate).getTime(); // Convert to timestamp
+  const dateB = new Date(b.frontmatter.pubDate).getTime(); // Convert to timestamp
+
+  return dateB - dateA; // Subtracting timestamps is valid
+});
+---
+
+<style>
+  div {
+    margin: var(--m-1);
+  }
+</style>
+
+<div>
+  <ul>
+    {
+      allWork.map((post: any) => (
+        <li>
+          <a href={post.url}>
+            {" "}
+            {post.frontmatter.title}{" "}
+            {post.frontmatter.tags.map((tag: any) => `[${tag}]`).join(" ")}{" "}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>

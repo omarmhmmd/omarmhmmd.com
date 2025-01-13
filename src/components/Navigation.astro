@@ -1,0 +1,29 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<div>
+  <ul>
+    <h1><a href="/" class={"active"}>Omar Mohammad</a></h1>
+    <li><a href="https://www.c-a-m-l.com/" target="_blank">Caml</a></li>
+    <li>
+      <a href="/info/" class={currentPath === "/info/" ? "active" : ""}>Info</a>
+    </li>
+    <li>
+      <a href="/news/" class={currentPath === "/news/" ? "active" : ""}>News</a>
+    </li>
+    <li><a href="/" class={currentPath === "/" ? "active" : ""}>Work</a></li>
+  </ul>
+</div>
+
+<style>
+  div {
+    margin: var(--m-1);
+  }
+  h1 {
+    margin-bottom: var(--m-1);
+  }
+  .active {
+    font-weight: bold;
+  }
+</style>
