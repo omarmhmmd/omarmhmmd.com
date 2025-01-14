@@ -1,0 +1,40 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+type Props = {
+  src: string | ImageMetadata;
+  // src will be ImageMetadata type in case you use an image from your content and string in case you use some external image
+  alt: string;
+  title: string;
+};
+
+const { src, alt, title } = Astro.props;
+
+// Regex to match a URL
+const urlRegex = /(https?:\/\/[^\s]+)/g;
+const titleWithLink = alt.replace(
+  urlRegex,
+  (url) => `<a href="${url}" target="_blank">${url}</a>`
+);
+---
+
+<style>
+
+  figcaption {
+    font-size: 14px;
+    margin-top: 4px;
+  }
+</style>
+
+<figure>
+  {
+    typeof src === "string" ? (
+      <img src={src} alt={alt} />
+    ) : (
+      <Image src={src} alt={alt} />
+    )
+  }
+
+  {alt && <figcaption set:html={titleWithLink}/>}
+</figure>

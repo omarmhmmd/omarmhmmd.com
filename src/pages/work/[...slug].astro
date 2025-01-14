@@ -1,0 +1,22 @@
+---
+import { getCollection, render } from 'astro:content';
+import WorkLayout from '../../layouts/WorkLayout.astro';
+import CustomImg from '../../components/CustomImg.astro';
+const components = {
+  img: CustomImg
+};
+
+export async function getStaticPaths() {
+  const posts = await getCollection('work');
+  return posts.map(post => ({
+    params: { slug: post.id }, props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<WorkLayout frontmatter={post.data}>
+  <Content components={components} />
+</WorkLayout>
