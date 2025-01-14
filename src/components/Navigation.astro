@@ -12,7 +12,7 @@ const currentPath = Astro.url.pathname;
     <li>
       <a href="/news/" class={currentPath === "/news/" ? "active" : ""}>News</a>
     </li>
-    <li><a href="/" class={currentPath === "/" ? "active" : ""}>Work</a></li>
+    <li><a href="/" class={currentPath === "/" || currentPath.startsWith("/work") ? "active" : ""}>Work</a></li>
   </ul>
 </div>
 
@@ -21,7 +21,7 @@ const currentPath = Astro.url.pathname;
     margin: var(--m-1);
   }
   h1 {
-    margin-bottom: var(--m-1);
+    font-size: 16px;
   }
   .active {
     font-weight: bold;

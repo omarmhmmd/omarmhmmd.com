@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import "../styles/global.css";
 
 type Post = {
@@ -7,13 +8,12 @@ type Post = {
   };
 };
 
-const allWork = Object.values(
-  import.meta.glob<Post>("../pages/work/*.md", { eager: true })
-);
+const allWork = await getCollection("work");
+
 
 allWork.sort((a, b) => {
-  const dateA = new Date(a.frontmatter.pubDate).getTime(); // Convert to timestamp
-  const dateB = new Date(b.frontmatter.pubDate).getTime(); // Convert to timestamp
+  const dateA = new Date(a.data.pubDate).getTime(); // Convert to timestamp
+  const dateB = new Date(b.data.pubDate).getTime(); // Convert to timestamp
 
   return dateB - dateA; // Subtracting timestamps is valid
 });
@@ -22,6 +22,12 @@ allWork.sort((a, b) => {
 <style>
   div {
     margin: var(--m-1);
+    padding-top: 4px;
+  }
+  @media (max-width: 1172px) {
+    div {
+    padding-top: 0px;
+  }
   }
 </style>
 
@@ -30,11 +36,11 @@ allWork.sort((a, b) => {
     {
       allWork.map((post: any) => (
         <li>
-          <a href={post.url}>
+          <a href={`/work/${post.id}/`}>
             {" "}
-            {post.frontmatter.title}{" "}
-            {post.frontmatter.tags.map((tag: any) => `[${tag}]`).join(" ")}{" "}
-            {new Date(post.frontmatter.pubDate).getFullYear()}
+            {post.data.title}{" "}
+            {post.data.tags.map((tag: any) => `[${tag}]`).join(" ")}{" "}
+            {new Date(post.data.pubDate).getFullYear()}
           </a>
         </li>
       ))

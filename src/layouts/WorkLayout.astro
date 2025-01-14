@@ -5,28 +5,87 @@ import BaseLayout from "./BaseLayout.astro";
 ---
 
 <style>
-  .container {
-  }
   .frontMatter {
-    margin: var(--m-1);
+    position: sticky;
+    padding-top: 4px;
+    top: var(--m-1);
+    margin-left: var(--m-1);
+    z-index: 2;
+  }
+  img {
+    width: 100vw;
+    height: auto;
+    z-index: 1;
+    margin-top: -104px; /* Push the image up by 10px */
+  }
+  @media (max-width: 1172px) {
+    .frontMatter {
+      position: relative;
+      top: 0px;
+      padding-top: 0px;
+    }
+    img {
+      margin-top: var(--m-1);
+    }
+  }
+  ul {
+    display: flex;
+    list-style: none;
+    margin-bottom: var(--m-2);
+  }
+  li {
+    margin-right: 4px;
+  }
+
+  p {
+    font-weight: bold;
+  }
+  .mdContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: var(--m-1);
+  }
+  @media (max-width: 1172px) {
+    .mdContainer {
+      margin: var(--m-1);
+    }
+  }
+  .md {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    max-width: 550px;
   }
 </style>
-
-</li>
 
 <BaseLayout>
   <div class="container">
     <div class="frontMatter">
-      <h1>{frontmatter.title}</h1>
-      <div>
-        {" "}
-        {frontmatter.title}{" "}
-        {frontmatter.tags.map((tag: any) => `[${tag}]`).join(" ")}{" "}
-        {new Date(frontmatter.pubDate).getFullYear()}
-      </div>
-      <a href={frontmatter.links}>{frontmatter.links}</a>
+      <ul>
+        <li>{frontmatter.title}</li>
+        {
+          frontmatter.tags.map((tag: any, index: number) => (
+            <li>
+              <a href={`/tags/${tag}`}>[{tag}]</a>
+            </li>
+          ))
+        }
+        <li>{new Date(frontmatter.pubDate).getFullYear()}</li>
+      </ul>
+      <p>{frontmatter.description}</p>
+      <a href={frontmatter.link} target="_blank">
+        {new URL(frontmatter.link).hostname}</a
+      >
     </div>
-    <img src={frontmatter.coverImg.url} alt="A bird." />
-    <slot />
+    <Image
+      src={frontmatter.image}
+      alt="A model of the Senj wood framing technique."
+    />
+    <div class="mdContainer">
+      <div class="md">
+        <slot />
+      </div>
+    </div>
   </div>
 </BaseLayout>
