@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/global.css";
+import { Content } from "./info.md";
+---
+
+<style>
+  div {
+    margin: var(--m-1);
+    max-width: var(--maxWidth);
+  }
+</style>
+
+<BaseLayout>
+  <div>
+    <Content />
+  </div>
+</BaseLayout>

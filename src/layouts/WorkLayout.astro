@@ -54,7 +54,6 @@ import BaseLayout from "./BaseLayout.astro";
   }
   .md {
     display: flex;
-    justify-content: left;
     flex-direction: column;
     max-width: var(--maxWidth);
   }
@@ -93,16 +92,17 @@ import BaseLayout from "./BaseLayout.astro";
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    // Select all links under elements with the class '.md', excluding those inside 'sup' tags
-    document.querySelectorAll('.md a:not(sup a)').forEach(link => {
-      link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener noreferrer'); // For security reasons
-    });
+    // Select all anchor tags
+    const anchorTags = document.querySelectorAll(".md a");
 
-    // Select all links under elements with the class 'footnotes', excluding those with 'data-footnote-backref' class
-    document.querySelectorAll('.footnotes a:not(.data-footnote-backref)').forEach(link => {
-      link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener noreferrer'); // For security reasons
+    anchorTags.forEach((anchor) => {
+      const href = anchor.getAttribute("href");
+
+      // Skip anchor links (e.g., href="#some-id")
+      if (href && !href.startsWith("#")) {
+        anchor.setAttribute("target", "_blank");
+        anchor.setAttribute("rel", "noopener noreferrer");
+      }
     });
   });
 </script>

@@ -73,7 +73,6 @@ a {
   color: black;
 }
 
-
 p,
 h1,
 h2,
@@ -82,6 +81,13 @@ h4,
 h5,
 h6 {
   margin-bottom: var(--m-2);
+}
+
+hr {
+  border: none;
+  height: 0.5px;
+  /* Set the hr color */
+  background-color:black;  /* Modern Browsers */
 }
 /* End Global CSS */
 
