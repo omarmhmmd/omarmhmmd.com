@@ -18,10 +18,28 @@ allWork.sort((a, b) => {
   div {
     margin-left: var(--m-1);
   }
+  a {
+    text-decoration: none;
+  }
+  a:hover{
+    text-decoration: underline;
+  }
 </style>
 
 <BaseLayout pageTitle={pageTitle}>
   <div>
-    <GetWork posts={allWork} />
+    <!-- <GetWork posts={allWork} /> -->
+    <ul>
+      {
+        allWork.map((post: any) => (
+          <li>
+            <a href={`/work/${post.id}/`}>
+              {" "}
+              {post.data.description}{" "}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </BaseLayout>

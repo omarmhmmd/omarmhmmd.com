@@ -36,11 +36,8 @@ filteredPosts.sort((a, b) => {
 ---
 
 <style>
-  div {
+  .container {
     margin-left: var(--m-1);
-  }
-  a {
-    text-decoration: none;
   }
   a:hover {
     text-decoration: underline;
@@ -48,12 +45,16 @@ filteredPosts.sort((a, b) => {
   p {
     font-weight: bold;
   }
+  a {
+    text-decoration: none;
+    font-weight: normal;
+  }
 </style>
 
 <BaseLayout pageTitle={tag}>
-  <div>
+  <div class="container">
     <p>
-      <a href="/index">Index</a> [{tag}]
+      [{tag}] <a href="/index">[list]</a>
     </p>
     <ul>
       <GetWork posts={filteredPosts} />

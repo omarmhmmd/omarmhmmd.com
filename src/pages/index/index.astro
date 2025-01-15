@@ -35,13 +35,10 @@ const pageTitle = "Tag Index";
 
 <BaseLayout pageTitle={pageTitle}>
   <div>
-    <p>
-      <a href="/index">Index</a>
-    </p>
     <ul>
       {tagsWithCounts.map(([tag, count]) => (
         <li>
-          <a href={`/index/${tag}`}>[{tag} ({count})]</a>
+          <a href={`/index/${tag}`}>[{tag}] ({count})</a>
         </li>
       ))}
     </ul>

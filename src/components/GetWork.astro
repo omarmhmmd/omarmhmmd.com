@@ -21,7 +21,7 @@ const { posts } = Astro.props;
             {" "}
             {post.data.title}{" "}
             {post.data.tags.map((tag: any) => `[${tag}]`).join(" ")}{" "}
-            {new Date(post.data.pubDate).getFullYear()}
+            {/* {new Date(post.data.pubDate).getFullYear()} */}
           </a>
         </li>
       ))

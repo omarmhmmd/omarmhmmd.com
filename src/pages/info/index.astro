@@ -1,18 +1,37 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import "../../styles/global.css";
-import { Content } from "./info.md";
+import { Content } from "./info.mdx";
 ---
 
 <style>
-  div {
+  .md {
     margin: var(--m-1);
     max-width: var(--maxWidth);
   }
+
+  /* :global(.md p) {
+    line-height: 1.5;
+    color: green; /* Applies green color to all p's */
+  } */
 </style>
 
 <BaseLayout>
-  <div>
+  <div class="md">
     <Content />
   </div>
 </BaseLayout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Select all anchor tags
+    const anchorTags = document.querySelectorAll(".md a");
+    anchorTags.forEach((anchor) => {
+      const href = anchor.getAttribute("href");
+      // Skip anchor links (e.g., href="#some-id")
+      if (href) {
+        anchor.setAttribute("target", "_blank");
+        anchor.setAttribute("rel", "noopener noreferrer");
+      }
+    });
+  });
+</script>

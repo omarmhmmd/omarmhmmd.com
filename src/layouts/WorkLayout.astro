@@ -45,7 +45,9 @@ import BaseLayout from "./BaseLayout.astro";
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-top: var(--m-2);
     margin-bottom: var(--m-1);
+    z-index: 1;
   }
   @media (max-width: 1172px) {
     .mdContainer {
@@ -56,6 +58,31 @@ import BaseLayout from "./BaseLayout.astro";
     display: flex;
     flex-direction: column;
     max-width: var(--maxWidth);
+  }
+  /* General Styles */
+  @media (max-width: 1172px) {
+    .container {
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+    }
+    /* Make the container a flex container with column direction */
+    .mdContainer {
+      margin-top: var(--m-2);
+      order: 3; /* Frontmatter comes after the image */
+    }
+
+    .frontMatter {
+      margin-top: var(--m-1);
+      order: 2; /* Frontmatter comes after the image */
+    }
+
+    img {
+      order: 1; /* Image comes first on mobile */
+      margin-top: var(--m-2);
+      width: 100%;
+      height: auto;
+    }
   }
 </style>
 
@@ -71,7 +98,7 @@ import BaseLayout from "./BaseLayout.astro";
             </li>
           ))
         }
-        <li>{new Date(frontmatter.pubDate).getFullYear()}</li>
+        <!-- <li>{new Date(frontmatter.pubDate).getFullYear()}</li> -->
       </ul>
       <p>{frontmatter.description}</p>
       <a href={frontmatter.link} target="_blank">
@@ -106,4 +133,3 @@ import BaseLayout from "./BaseLayout.astro";
     });
   });
 </script>
-
