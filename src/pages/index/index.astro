@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+// Fetch all posts from the "work" collection
+const allPosts = await getCollection("work");
+
+// Get unique tags and calculate post count for each tag
+const tagsWithCounts = Array.from(
+  allPosts
+    .flatMap((post) => post.data.tags) // Flatten all tags into one array
+    .reduce((tagMap, tag) => {
+      tagMap.set(tag, (tagMap.get(tag) || 0) + 1); // Count occurrences of each tag
+      return tagMap;
+    }, new Map())
+).sort(([tagA], [tagB]) => tagA.localeCompare(tagB)); // Sort tags alphabetically
+
+const pageTitle = "Tag Index";
+---
+
+<style>
+  div {
+    margin-left: var(--m-1);
+  }
+  p {
+    font-weight: bold;
+  }
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<BaseLayout pageTitle={pageTitle}>
+  <div>
+    <p>
+      <a href="/index">Index</a>
+    </p>
+    <ul>
+      {tagsWithCounts.map(([tag, count]) => (
+        <li>
+          <a href={`/index/${tag}`}>[{tag} ({count})]</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>
