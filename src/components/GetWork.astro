@@ -2,14 +2,7 @@
 import { getCollection } from "astro:content";
 import "../styles/global.css";
 
-type Post = {
-  frontmatter: {
-    pubDate: string; // Ensure pubDate is a string since it's parsed as a date
-  };
-};
-
 const allWork = await getCollection("work");
-
 
 allWork.sort((a, b) => {
   const dateA = new Date(a.data.pubDate).getTime(); // Convert to timestamp
@@ -22,12 +15,6 @@ allWork.sort((a, b) => {
 <style>
   div {
     margin: var(--m-1);
-    padding-top: 4px;
-  }
-  @media (max-width: 1172px) {
-    div {
-    padding-top: 0px;
-  }
   }
 </style>
 

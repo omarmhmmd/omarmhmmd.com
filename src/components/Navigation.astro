@@ -4,7 +4,7 @@ const currentPath = Astro.url.pathname;
 
 <div>
   <ul>
-    <h1><a href="/" class={"active"}>Omar Mohammad</a></h1>
+    <h1><a id="name" href="/" class="active">Omar Mohammad</a></h1>
     <li><a href="https://www.c-a-m-l.com/" target="_blank">Caml</a></li>
     <li>
       <a href="/info/" class={currentPath === "/info/" ? "active" : ""}>Info</a>
@@ -12,11 +12,50 @@ const currentPath = Astro.url.pathname;
     <li>
       <a href="/news/" class={currentPath === "/news/" ? "active" : ""}>News</a>
     </li>
-    <li><a href="/" class={currentPath === "/" || currentPath.startsWith("/work") ? "active" : ""}>Work</a></li>
+    <li>
+      <a
+        href="/"
+        class={currentPath === "/" || currentPath.startsWith("/work")
+          ? "active"
+          : ""}>Work</a>
+    </li>
   </ul>
 </div>
 
+<script>
+  const nameElement = document.getElementById("name");
+
+  if (nameElement) {
+    const names = ["Omar Mohammad", "عمر محمد"];
+    let index = 0;
+
+    setInterval(() => {
+      // Fade out
+      nameElement.classList.add("hidden");
+
+      setTimeout(() => {
+        // Change the text after fade-out is complete
+        index = (index + 1) % names.length;
+        nameElement.textContent = names[index];
+
+        // Fade in
+        nameElement.classList.remove("hidden");
+      }, 500); // Match this delay to the CSS transition duration
+    }, 5000); // Change every 2 seconds
+  } else {
+    console.error("Element with ID 'name' not found.");
+  }
+</script>
+
 <style>
+  a {
+    color: black;
+    display: inline-block;
+    transition: opacity 0.5s ease-in-out; /* Smooth opacity transition */
+  }
+  a.hidden {
+    opacity: 0; /* Hidden state for fade-out effect */
+  }
   div {
     margin: var(--m-1);
   }

@@ -7,7 +7,6 @@ import BaseLayout from "./BaseLayout.astro";
 <style>
   .frontMatter {
     position: sticky;
-    padding-top: 4px;
     top: var(--m-1);
     margin-left: var(--m-1);
     z-index: 2;
@@ -16,13 +15,12 @@ import BaseLayout from "./BaseLayout.astro";
     width: 100vw;
     height: auto;
     z-index: 1;
-    margin-top: -104px; /* Push the image up by 10px */
+    margin-top: -108px; /* Push the image up by 10px */
   }
   @media (max-width: 1172px) {
     .frontMatter {
       position: relative;
       top: 0px;
-      padding-top: 0px;
     }
     img {
       margin-top: var(--m-1);
@@ -55,7 +53,7 @@ import BaseLayout from "./BaseLayout.astro";
     display: flex;
     justify-content: left;
     flex-direction: column;
-    max-width: 550px;
+    max-width: var(--maxWidth);
   }
 </style>
 

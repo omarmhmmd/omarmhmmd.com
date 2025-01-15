@@ -1,5 +1,7 @@
 /* CSS Reset */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -7,17 +9,36 @@
   margin: 0;
 }
 
-body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
   margin: 0;
   padding: 0;
 }
 
 /* Stop long words causing overflow */
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   overflow-wrap: break-word;
 }
 
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   width: 100%;
   height: auto;
@@ -32,35 +53,43 @@ ul {
 :root {
   --m-1: 24px;
   --m-2: 16px;
-  --lh-1: 1.25;
+  --lh-1: 1.325;
   --mainFont: "serif";
   --mobile: 1172px;
+  --smlFont: 14px;
+  --maxWidth: 550px;
 }
 /* End variables */
 
 /* Global CSS */
 body {
   font-family: var(--mainFont);
-  font-size: 15.75px;
+  font-size: 16px;
   line-height: var(--lh-1);
 }
 
 a {
   text-decoration: none;
-  color: black;
   line-height: var(--lh-1);
+  color: black;
 }
 
 a:hover {
   text-decoration: underline;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-bottom: var(--m-2);
 }
 /* End Global CSS */
 
-
+/* Footnote */
 #footnote-label {
   visibility: hidden;
   position: relative;
@@ -80,12 +109,28 @@ ol {
 
 ol li {
   counter-increment: list-counter;
-  display: flex;
+  display:flex;
   gap: 8px;
-  font-size: 14px;
+  font-size: var(--smlFont);
+}
+
+ol li p {
+  max-width: var(--maxWidth); 
 }
 
 ol li::before {
-  content: '[' counter(list-counter) '] ';
+  content: "[" counter(list-counter) "] ";
 }
 
+@media (max-width: 1172px) {
+  .data-footnote-backref {
+    pointer-events: auto;
+    visibility: hidden;
+  }
+
+  .data-footnote-backref::before {
+    visibility: visible;
+    content: "→"; /* Unicode for ↩ */
+  }
+}
+/* End Footnote */
