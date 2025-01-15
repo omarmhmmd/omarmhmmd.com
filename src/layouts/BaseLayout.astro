@@ -10,8 +10,11 @@ const { pageTitle } = Astro.props;
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
+    <!-- SEO -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="description" content="Search engine description" />
     <title>{pageTitle}</title>
+    <!-- End SEO -->
   </head>
   <body>
     <Navigation />
