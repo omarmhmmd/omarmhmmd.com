@@ -3,7 +3,7 @@ import Analytics from "@vercel/analytics/astro";
 import { SEO } from "astro-seo";
 import "../styles/global.css";
 import Navigation from "../components/Navigation.astro";
-const { pageTitle } = Astro.props;
+const props = Astro.props;
 ---
 
 <html lang="en">
@@ -12,8 +12,9 @@ const { pageTitle } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="keywords" content="HTML,CSS,JavaScript" />
     <SEO
-      title={pageTitle}
+      title={props.pageTitle}
       description="A heavily optimized description full of well-researched keywords."
       openGraph={{
         basic: {
@@ -22,13 +23,12 @@ const { pageTitle } = Astro.props;
           image:
             "https://user-images.githubusercontent.com/5182256/131216951-8f74f425-f775-463d-a11b-0e01ad9fce8d.png",
         },
-      }}
-      twitter={{
-        creator: "@jonasmerlins1",
+        optional: {
+          description: "test",
+          siteName: "test",
+        },
       }}
       extend={{
-        // extending the default link tags
-        link: [{ rel: "icon", href: "/favicon.ico" }],
         // extending the default meta tags
         meta: [
           {
@@ -38,6 +38,7 @@ const { pageTitle } = Astro.props;
           },
           { name: "twitter:title", content: "Tinker Tailor Soldier Spy" },
           { name: "twitter:description", content: "Agent" },
+          { name: "twitter:card", content: "summary_large_image" },
         ],
       }}
     />
