@@ -11,6 +11,9 @@ import BaseLayout from "./BaseLayout.astro";
     margin-left: var(--m-1);
     z-index: 2;
   }
+  a {
+    text-decoration: underline;
+  }
   img {
     width: 100vw;
     height: auto;
@@ -65,7 +68,7 @@ import BaseLayout from "./BaseLayout.astro";
         {
           frontmatter.tags.map((tag: any, index: number) => (
             <li>
-              <a href={`/tags/${tag}`}>[{tag}]</a>
+              <a href={`/index/${tag}`}>[{tag}]</a>
             </li>
           ))
         }

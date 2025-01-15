@@ -1,27 +1,21 @@
 ---
-import { getCollection } from "astro:content";
-import "../styles/global.css";
-
-const allWork = await getCollection("work");
-
-allWork.sort((a, b) => {
-  const dateA = new Date(a.data.pubDate).getTime(); // Convert to timestamp
-  const dateB = new Date(b.data.pubDate).getTime(); // Convert to timestamp
-
-  return dateB - dateA; // Subtracting timestamps is valid
-});
+const { posts } = Astro.props;
 ---
 
 <style>
-  div {
-    margin: var(--m-1);
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
   }
 </style>
 
 <div>
   <ul>
     {
-      allWork.map((post: any) => (
+      posts.map((post: any) => (
         <li>
           <a href={`/work/${post.id}/`}>
             {" "}

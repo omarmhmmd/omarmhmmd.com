@@ -69,14 +69,10 @@ body {
 }
 
 a {
-  text-decoration: none;
-  line-height: var(--lh-1);
+  text-decoration: underline;
   color: black;
 }
 
-a:hover {
-  text-decoration: underline;
-}
 
 p,
 h1,

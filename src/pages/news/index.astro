@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const news = await Astro.glob("./*.md");
+
+// Sort news by `pubDate` in descending order
+const sortedNews = news.sort((a, b) => {
+  const dateA = new Date(a.frontmatter.pubDate).getTime(); // Convert to timestamp
+  const dateB = new Date(b.frontmatter.pubDate).getTime(); // Convert to timestamp
+
+  return dateB - dateA; // Subtracting timestamps is valid
+});
+
+console.log(sortedNews);
+---
+
+<style>
+  .container {
+    margin: var(--m-1);
+    margin-right: 0px;
+    display: flex;
+    flex-direction: row;
+    gap: var(--m-1);
+    overflow-x: auto; /* Enable horizontal scrolling */
+  }
+
+  .container div {
+    width: 300px;
+    flex-shrink: 0; /* Prevent items from shrinking */
+  }
+
+  .container div:last-child {
+    margin-right: var(--m-1);
+  }
+</style>
+
+<BaseLayout>
+  <div class="container">
+    {
+      sortedNews.map((item) => (
+        <div>
+          <item.Content />
+        </div>
+      ))
+    }
+  </div>
+</BaseLayout>
