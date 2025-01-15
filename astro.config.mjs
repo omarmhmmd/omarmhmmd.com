@@ -8,8 +8,8 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://omarmhmmd-com.vercel.app/',
   integrations: [
-    mdx(), 
+    mdx(),
     sitemap(
 
-  )],
+    )],
 });
