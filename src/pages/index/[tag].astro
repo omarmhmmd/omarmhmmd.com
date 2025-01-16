@@ -3,6 +3,9 @@ import GetWork from "../../components/GetWork.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
+const meta = "عمر محمد Omar Mohammad designs, researches, and works with Afghan & Islamic culture: architecture, materials, symbols, technology, and love."
+import image from "../images/me.png"
+
 export async function getStaticPaths() {
   const allPosts = await getCollection("work");
 
@@ -51,7 +54,7 @@ filteredPosts.sort((a, b) => {
   }
 </style>
 
-<BaseLayout pageTitle={tag}>
+<BaseLayout title={tag} description={meta} image={image.src}>
   <div class="container">
     <p>
       [{tag}] <a href="/index">[list]</a>

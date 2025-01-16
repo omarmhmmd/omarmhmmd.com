@@ -1,6 +1,9 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { Content } from "./info.mdx";
+const title = "";
+const meta = "عمر محمد Omar Mohammad designs, researches, and works with Afghan & Islamic culture: architecture, materials, symbols, technology, and love."
+import image from "../../images/me.png"
 ---
 
 <style>
@@ -15,7 +18,7 @@ import { Content } from "./info.mdx";
   } */
 </style>
 
-<BaseLayout>
+<BaseLayout title={title} description={meta} image={image.src}>
   <div class="md">
     <Content />
   </div>

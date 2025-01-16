@@ -2,6 +2,10 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const news = await Astro.glob("./*.md");
 
+const title = "";
+const meta = "عمر محمد Omar Mohammad designs, researches, and works with Afghan & Islamic culture: architecture, materials, symbols, technology, and love."
+import image from "../images/me.png"
+
 // Sort news by `pubDate` in descending order
 const sortedNews = news.sort((a, b) => {
   const dateA = new Date(a.frontmatter.pubDate).getTime(); // Convert to timestamp
@@ -33,7 +37,7 @@ console.log(sortedNews);
   }
 </style>
 
-<BaseLayout>
+<BaseLayout title={title} description={meta} image={image.src}>
   <div class="container">
     {
       sortedNews.map((item) => (

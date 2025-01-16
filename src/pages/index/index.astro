@@ -15,7 +15,9 @@ const tagsWithCounts = Array.from(
     }, new Map())
 ).sort(([tagA], [tagB]) => tagA.localeCompare(tagB)); // Sort tags alphabetically
 
-const pageTitle = "Tag Index";
+const title = "Index";
+const meta = "عمر محمد Omar Mohammad designs, researches, and works with Afghan & Islamic culture: architecture, materials, symbols, technology, and love."
+import image from "../images/me.png"
 ---
 
 <style>
@@ -33,7 +35,7 @@ const pageTitle = "Tag Index";
   }
 </style>
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout title={title} description={meta} image={image.src}>
   <div>
     <ul>
       {tagsWithCounts.map(([tag, count]) => (
