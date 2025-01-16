@@ -18,23 +18,23 @@ const currentPath = Astro.url.pathname;
       description={description}
       openGraph={{
         basic: {
-          title: `${description}`,
+          title: description,
           type: "article",
-          image: `${image}`,
+          image: image.src,
         },
         optional: {
-          description: `${description}`,
-          siteName: `omarmhmmd.com${currentPath}`,
+          description: description,
+          siteName: "omarmhmmd.com" + currentPath,
         },
       }}
       extend={{
         meta: [
           {
             name: "twitter:image",
-            content: `${image}`,
+            content: image,
           },
-          { name: "twitter:title", content: `${description}` },
-          { name: "twitter:description", content: `${description}` },
+          { name: "twitter:title", content: description },
+          { name: "twitter:description", content: description },
           { name: "twitter:card", content: "summary_large_image" },
         ],
       }}
