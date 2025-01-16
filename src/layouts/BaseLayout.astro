@@ -3,7 +3,8 @@ import Analytics from "@vercel/analytics/astro";
 import { SEO } from "astro-seo";
 import "../styles/global.css";
 import Navigation from "../components/Navigation.astro";
-const props = Astro.props;
+const {title, description, image} = Astro.props;
+const currentPath = Astro.url.pathname;
 ---
 
 <html lang="en">
@@ -12,32 +13,28 @@ const props = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <meta name="keywords" content="HTML,CSS,JavaScript" />
     <SEO
-      title={props.pageTitle}
-      description="A heavily optimized description full of well-researched keywords."
+      title={`Omar Mohammad${title ? ` | ${title}` : ''}`}
+      description={description}
       openGraph={{
         basic: {
-          title: "A Very Descriptive Title",
-          type: "A type.",
-          image:
-            "https://user-images.githubusercontent.com/5182256/131216951-8f74f425-f775-463d-a11b-0e01ad9fce8d.png",
+          title: `${description}`,
+          type: "article",
+          image: `${image}`,
         },
         optional: {
-          description: "test",
-          siteName: "test",
+          description: `${description}`,
+          siteName: `omarmhmmd.com${currentPath}`,
         },
       }}
       extend={{
-        // extending the default meta tags
         meta: [
           {
             name: "twitter:image",
-            content:
-              "https://user-images.githubusercontent.com/5182256/131216951-8f74f425-f775-463d-a11b-0e01ad9fce8d.png",
+            content: `${image}`,
           },
-          { name: "twitter:title", content: "Tinker Tailor Soldier Spy" },
-          { name: "twitter:description", content: "Agent" },
+          { name: "twitter:title", content: `${description}` },
+          { name: "twitter:description", content: `${description}` },
           { name: "twitter:card", content: "summary_large_image" },
         ],
       }}

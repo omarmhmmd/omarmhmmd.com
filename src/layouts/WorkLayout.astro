@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 const { frontmatter } = Astro.props;
 import BaseLayout from "./BaseLayout.astro";
-const pageTitle = "Omar Mohammad |";
 ---
 
 <style>
@@ -87,8 +86,8 @@ const pageTitle = "Omar Mohammad |";
   }
 </style>
 
-<BaseLayout pageTitle={`${pageTitle} ${frontmatter.title}`} />
-  <div class="container">
+<BaseLayout title={frontmatter.description} description={frontmatter.meta} image={frontmatter.image.src} />
+  <header class="container">
     <div class="frontMatter">
       <ul>
         <li>{frontmatter.title}</li>
@@ -111,11 +110,11 @@ const pageTitle = "Omar Mohammad |";
       alt="A model of the Senj wood framing technique."
     />
     <div class="mdContainer">
-      <div class="md">
+      <article class="md">
         <slot />
-      </div>
+      </article>
     </div>
-  </div>
+  </header>
 </BaseLayout>
 
 <script>

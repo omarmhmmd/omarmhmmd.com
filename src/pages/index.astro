@@ -1,7 +1,7 @@
 ---
 import GetWork from "../components/GetWork.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-const pageTitle = "Omar Mohammad";
+const title = "";
 import { getCollection } from "astro:content";
 const allWork = await getCollection("work");
 
@@ -25,7 +25,7 @@ allWork.sort((a, b) => {
   }
 </style>
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout title={title}>
   <div>
     <!-- <GetWork posts={allWork} /> -->
     <ul>
