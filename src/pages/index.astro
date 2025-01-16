@@ -3,7 +3,7 @@ import GetWork from "../components/GetWork.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 const title = "";
 const meta = "عمر محمد Omar Mohammad designs, researches, and works with Afghan & Islamic culture: architecture, materials, symbols, technology, and love. Artifacts manifest themselves as archives, graphics, exhibitions, publications, objects, and software. These artifacts are designed to define historical pasts and propose speculative futures. He teaches design at the California College of the Arts, designed at cultural institutions such as the San Francisco Museum of Modern Art, and studied design at UC Davis. He is currently a graduate student pursuing a Master of Design at the UC Berkeley College of Environmental Design."
-const image = "../images/me.png"
+import image from "../images/me.png"
 import { getCollection } from "astro:content";
 const allWork = await getCollection("work");
 
@@ -27,7 +27,7 @@ allWork.sort((a, b) => {
   }
 </style>
 
-<BaseLayout title={title} description={meta} image={image}>
+<BaseLayout title={title} description={meta} image={image.src}>
   <div>
     <!-- <GetWork posts={allWork} /> -->
     <ul>
