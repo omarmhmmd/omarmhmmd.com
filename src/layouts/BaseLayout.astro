@@ -15,13 +15,13 @@ const currentPath = Astro.url.pathname;
     <meta name="viewport" content="width=device-width" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <SEO
-      title={`Omar Mohammad${title ? ` | ${title}` : ""}`}
-      description={description}
+    title={`${title ? `${title} | ` : ""}Omar Mohammad`}
+    description={description}
       openGraph={{
         basic: {
-          title: title || "Default Title", // Ensure 'title' is always defined
+          title: title || "Omar Mohammad", // Ensure 'title' is always defined
           type: "article", // Always include a valid type
-          image: image || "/default-image.jpg", // Provide a default image if missing
+          image: image || "../images/me.png", // Provide a default image if missing
         },
         optional: {
           description: description,
