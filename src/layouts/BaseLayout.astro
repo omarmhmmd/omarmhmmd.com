@@ -3,7 +3,8 @@ import Analytics from "@vercel/analytics/astro";
 import { SEO } from "astro-seo";
 import "../styles/global.css";
 import Navigation from "../components/Navigation.astro";
-const {title, description, image} = Astro.props;
+
+const { title, description, image } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
@@ -14,13 +15,13 @@ const currentPath = Astro.url.pathname;
     <meta name="viewport" content="width=device-width" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <SEO
-      title={`Omar Mohammad${title ? ` | ${title}` : ''}`}
+      title={`Omar Mohammad${title ? ` | ${title}` : ""}`}
       description={description}
       openGraph={{
         basic: {
-          title: description,
-          type: "article",
-          image: image.src,
+          title: title || "Default Title", // Ensure 'title' is always defined
+          type: "article", // Always include a valid type
+          image: image || "/default-image.jpg", // Provide a default image if missing
         },
         optional: {
           description: description,
@@ -33,7 +34,7 @@ const currentPath = Astro.url.pathname;
             name: "twitter:image",
             content: image,
           },
-          { name: "twitter:title", content: description },
+          { name: "twitter:title", content: title },
           { name: "twitter:description", content: description },
           { name: "twitter:card", content: "summary_large_image" },
         ],
