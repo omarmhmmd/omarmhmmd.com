@@ -3,8 +3,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const news = await Astro.glob("./*.md");
 
 const title = "News";
-const meta = "عمر محمد Omar Mohammad designs, researches, and works with Afghan & Islamic culture: architecture, materials, symbols, technology, and love."
-import image from "../../images/me.jpg"
+const meta =
+  "عمر محمد Omar Mohammad designs, researches, and works with Afghan & Islamic culture: architecture, materials, symbols, technology, and love.";
+import image from "../../images/me.jpg";
 
 // Sort news by `pubDate` in descending order
 const sortedNews = news.sort((a, b) => {
@@ -28,7 +29,7 @@ console.log(sortedNews);
   }
 
   .container div {
-    width: 300px;
+    width: calc(var(--maxWidth)/2);
     flex-shrink: 0; /* Prevent items from shrinking */
   }
 
@@ -41,7 +42,7 @@ console.log(sortedNews);
   <div class="container">
     {
       sortedNews.map((item) => (
-        <div>
+        <div class="md">
           <item.Content />
         </div>
       ))
@@ -50,10 +51,23 @@ console.log(sortedNews);
 </BaseLayout>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll('.container a').forEach(link => {
-      link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener noreferrer'); // For security reasons
-    });
+document.addEventListener("DOMContentLoaded", () => {
+  const anchorTags = document.querySelectorAll(".md a");
+
+  anchorTags.forEach((anchor) => {
+    const href = anchor.getAttribute("href");
+
+    // Remove ↩ character from text content
+    if (anchor.textContent) {
+      anchor.textContent = anchor.textContent.replace(/↩/g, "");
+    }
+
+    // Skip anchor links (e.g., href="#some-id")
+    if (href && !href.startsWith("#")) {
+      anchor.setAttribute("target", "_blank");
+      anchor.setAttribute("rel", "noopener noreferrer");
+    }
   });
+});
+
 </script>
