@@ -4,7 +4,7 @@ import { glob } from "astro/loaders";
 import { z, defineCollection } from "astro:content";
 // Define a `loader` and `schema` for each collection
 const work = defineCollection({
-    loader: glob({ pattern: '**/*.{md,mdx}', base: "./src/work" }),
+    loader: glob({ pattern: '**/*.{md,mdx}', base: "./src/pages/work/entries" }),
     schema: ({ image }) => z.object({
       title: z.string(),
       description: z.string(),
