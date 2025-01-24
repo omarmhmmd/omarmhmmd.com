@@ -4,23 +4,43 @@ import { Image } from "astro:assets";
 
 type Props = {
   src: string | ImageMetadata;
-  // src will be ImageMetadata type in case you use an image from your content and string in case you use some external image
   alt: string;
   title: string;
 };
 
 const { src, alt, title } = Astro.props;
 
-// Regex to match a URL
-const urlRegex = /(https?:\/\/[^\s]+)/g;
-const titleWithLink = alt.replace(
-  urlRegex,
-  (url) => `<a href="${url}" target="_blank">${url}</a>`
+// Function to convert `/italic text/` to <i> tags
+const convertSlashToHtml = (text: string) => {
+  return text.replace(/"([^"]+)"/g, '<i>$1</i>'); // Match "text" and convert to <i> tags
+};
+
+// Helper function to extract the base domain from a URL
+const extractBaseDomain = (url: string) => {
+  try {
+    const hostname = new URL(url).hostname;
+    const parts = hostname.split(".");
+    return parts.slice(-2).join("."); // Extract the base domain (e.g., example.com)
+  } catch (e) {
+    console.error("Invalid URL:", url, e);
+    return url; // Return the original URL in case of error
+  }
+};
+
+// Convert the alt text to HTML with italics from slashes
+const parsedAlt = convertSlashToHtml(alt);
+
+// Regex to match and convert URLs to links in the alt text
+const titleWithLink = parsedAlt.replace(
+  /(https?:\/\/[^\s]+)/g,
+  (url) => {
+    const domain = extractBaseDomain(url);
+    return `<a href="${url}" target="_blank">${domain}</a>`;
+  }
 );
 ---
 
 <style>
-
   figcaption {
     font-size: var(--smlFont);
     margin-top: 4px;
@@ -36,5 +56,5 @@ const titleWithLink = alt.replace(
     )
   }
 
-  {alt && <figcaption set:html={titleWithLink}/>}
+  {alt && <figcaption set:html={titleWithLink} />}
 </figure>

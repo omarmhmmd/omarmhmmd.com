@@ -20,6 +20,7 @@ import BaseLayout from "./BaseLayout.astro";
     z-index: 1;
     margin-top: -108px; /* Push the image up by 10px */
   }
+
   @media (max-width: 1172px) {
     .frontMatter {
       position: relative;
@@ -31,13 +32,13 @@ import BaseLayout from "./BaseLayout.astro";
   }
   ul {
     display: flex;
+    flex-wrap: wrap;
     list-style: none;
     margin-bottom: var(--m-2);
   }
   li {
     margin-right: 4px;
   }
-
   p {
     font-weight: bold;
   }
@@ -86,36 +87,39 @@ import BaseLayout from "./BaseLayout.astro";
   }
 </style>
 
-<BaseLayout title={frontmatter.description} description={frontmatter.meta} image={frontmatter.image.src} />
-  <header class="container">
-    <div class="frontMatter">
-      <ul>
-        <li>{frontmatter.title}</li>
-        {
-          frontmatter.tags.map((tag: any, index: number) => (
-            <li>
-              <a href={`/index/${tag}`}>[{tag}]</a>
-            </li>
-          ))
-        }
-        <!-- <li>{new Date(frontmatter.pubDate).getFullYear()}</li> -->
-      </ul>
-      <p>{frontmatter.description}</p>
-      <a href={frontmatter.link} target="_blank">
-        {new URL(frontmatter.link).hostname}</a
-      >
-    </div>
-    <Image
-      src={frontmatter.image}
-      alt="A model of the Senj wood framing technique."
-    />
-    <div class="mdContainer">
-      <article class="md">
-        <slot />
-      </article>
-    </div>
-  </header>
-</BaseLayout>
+<BaseLayout
+  title={frontmatter.description}
+  description={frontmatter.meta}
+  image={frontmatter.image.src}
+/>
+<header class="container">
+  <div class="frontMatter">
+    <ul>
+      <li>{frontmatter.title}</li>
+      {
+        frontmatter.tags.map((tag: any, index: number) => (
+          <li>
+            <a href={`/index/${tag}`}>[{tag}]</a>
+          </li>
+        ))
+      }
+      <!-- <li>{new Date(frontmatter.pubDate).getFullYear()}</li> -->
+    </ul>
+    <p>{frontmatter.description}</p>
+    <a href={frontmatter.link} target="_blank">
+      {new URL(frontmatter.link).hostname}</a
+    >
+  </div>
+  <Image
+    src={frontmatter.image}
+    alt="A model of the Senj wood framing technique."
+  />
+  <div class="mdContainer">
+    <article class="md">
+      <slot />
+    </article>
+  </div>
+</header>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
