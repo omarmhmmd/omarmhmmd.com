@@ -10,7 +10,7 @@ const work = defineCollection({
       description: z.string(),
       meta: z.string(),
       pubDate: z.date(),
-      link: z.string(),
+      links: z.array(z.string()),
       image: image(),
       imgAlt:  z.string(),
       tags: z.array(z.string())

@@ -7,28 +7,36 @@ import BaseLayout from "./BaseLayout.astro";
 <style>
   .frontMatter {
     position: sticky;
+    display: block;
     top: var(--m-1);
     margin-left: var(--m-1);
     z-index: 2;
   }
+  @media (max-width: 1172px) {
+   .frontMatter {
+    position: relative;
+    top: 0;
+
+   }
+  }
+  .link-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--m-2);
+    align-items: flex-start; /* Prevent stretching to container width */
+  }
   a {
+    display: inline-block; /* Ensures the anchor size matches its content */
     text-decoration: underline;
+    padding: 0; /* Remove any unnecessary padding */
+    margin: 0; /* Remove unnecessary margins */
   }
   img {
     width: 100vw;
     height: auto;
+    margin: var(--m-2);
     z-index: 1;
-    margin-top: -108px; /* Push the image up by 10px */
-  }
 
-  @media (max-width: 1172px) {
-    .frontMatter {
-      position: relative;
-      top: 0px;
-    }
-    img {
-      margin-top: var(--m-1);
-    }
   }
   ul {
     display: flex;
@@ -54,35 +62,18 @@ import BaseLayout from "./BaseLayout.astro";
     .mdContainer {
       margin: var(--m-1);
     }
+
   }
   .md {
     display: flex;
     flex-direction: column;
     max-width: var(--maxWidth);
   }
-  /* General Styles */
   @media (max-width: 1172px) {
     .container {
       display: flex;
       flex-direction: column;
       z-index: 1;
-    }
-    /* Make the container a flex container with column direction */
-    .mdContainer {
-      margin-top: var(--m-2);
-      order: 3; /* Frontmatter comes after the image */
-    }
-
-    .frontMatter {
-      margin-top: var(--m-1);
-      order: 2; /* Frontmatter comes after the image */
-    }
-
-    img {
-      order: 1; /* Image comes first on mobile */
-      margin-top: var(--m-2);
-      width: 100%;
-      height: auto;
     }
   }
 </style>
@@ -106,15 +97,24 @@ import BaseLayout from "./BaseLayout.astro";
       <!-- <li>{new Date(frontmatter.pubDate).getFullYear()}</li> -->
     </ul>
     <p>{frontmatter.description}</p>
-    <a href={frontmatter.link} target="_blank">
-      {new URL(frontmatter.link).hostname}</a
-    >
+    <div class="link-container">
+      {
+        frontmatter.links.map((link: any, index: number) => (
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            {new URL(link).hostname}
+          </a>
+        ))
+      }
+    </div>
+    <div>
+      <a href="/">[back]</a>
+    </div>
   </div>
-  <Image
-    src={frontmatter.image}
-    alt="A model of the Senj wood framing technique."
-  />
   <div class="mdContainer">
+    <Image
+      src={frontmatter.image}
+      alt="A model of the Senj wood framing technique."
+    />
     <article class="md">
       <slot />
     </article>
