@@ -13,11 +13,10 @@ import BaseLayout from "./BaseLayout.astro";
     z-index: 2;
   }
   @media (max-width: 1172px) {
-   .frontMatter {
-    position: relative;
-    top: 0;
-
-   }
+    .frontMatter {
+      position: relative;
+      top: 0;
+    }
   }
   .link-container {
     display: flex;
@@ -36,7 +35,6 @@ import BaseLayout from "./BaseLayout.astro";
     height: auto;
     margin: var(--m-2);
     z-index: 1;
-
   }
   ul {
     display: flex;
@@ -62,7 +60,6 @@ import BaseLayout from "./BaseLayout.astro";
     .mdContainer {
       margin: var(--m-1);
     }
-
   }
   .md {
     display: flex;
@@ -76,6 +73,25 @@ import BaseLayout from "./BaseLayout.astro";
       z-index: 1;
     }
   }
+  .btnContainer {
+    margin: var(--m-2) 0;
+    display: flex;
+    flex-direction: row;
+    gap: var(--m-3);
+    width: 100%;
+    justify-content: center;
+  }
+  button {
+    background-color: var(--bgColor);
+    border: none;
+    font-family: var(--mainFont);
+    padding: 0;
+    font-size: 16px;
+    text-decoration: underline;
+  }
+  button:hover {
+    cursor: pointer;
+  }
 </style>
 
 <BaseLayout
@@ -83,7 +99,7 @@ import BaseLayout from "./BaseLayout.astro";
   description={frontmatter.meta}
   image={frontmatter.image.src}
 />
-<header class="container">
+<div class="container">
   <div class="frontMatter">
     <ul>
       <li>{frontmatter.title}</li>
@@ -106,9 +122,6 @@ import BaseLayout from "./BaseLayout.astro";
         ))
       }
     </div>
-    <div>
-      <a href="/">[back]</a>
-    </div>
   </div>
   <div class="mdContainer">
     <Image
@@ -117,14 +130,37 @@ import BaseLayout from "./BaseLayout.astro";
     />
     <article class="md">
       <slot />
+      <hr />
+      <div class="btnContainer">
+        <a class="backBtn" href="/">[back]</a>
+        <button class="back-to-top" id="backToTop">[top]</button>
+      </div>
     </article>
   </div>
-</header>
+  <!-- Back to Top Button -->
+</div>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    // Back to Top Button functionality
+    const backToTopBtn = document.getElementById("backToTop");
+
+    if (backToTopBtn) {
+      window.addEventListener("scroll", () => {
+        // Show button when scrolled down
+        if (window.scrollY > 300) {
+          backToTopBtn.style.display = "block";
+        } else {
+          backToTopBtn.style.display = "none";
+        }
+      });
+
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "auto" });
+      });
+    }
     // Select all anchor tags
-    const anchorTags = document.querySelectorAll(".md a");
+    const anchorTags = document.querySelectorAll(".md a:not(.backBtn)");
 
     anchorTags.forEach((anchor) => {
       const href = anchor.getAttribute("href");
