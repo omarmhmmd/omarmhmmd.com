@@ -12,6 +12,12 @@ import BaseLayout from "./BaseLayout.astro";
     margin-left: var(--m-1);
     z-index: 2;
   }
+  .frontMatter a {
+    text-decoration: none;
+  }
+  .frontMatter a:hover {
+    text-decoration: underline;
+  }
   @media (max-width: 1172px) {
     .frontMatter {
       position: relative;
@@ -59,19 +65,13 @@ import BaseLayout from "./BaseLayout.astro";
   @media (max-width: 1172px) {
     .mdContainer {
       margin: var(--m-1);
+      margin-top: 0;
     }
   }
   .md {
     display: flex;
     flex-direction: column;
     max-width: var(--maxWidth);
-  }
-  @media (max-width: 1172px) {
-    .container {
-      display: flex;
-      flex-direction: column;
-      z-index: 1;
-    }
   }
   .btnContainer {
     margin: var(--m-2) 0;
@@ -81,16 +81,22 @@ import BaseLayout from "./BaseLayout.astro";
     width: 100%;
     justify-content: center;
   }
+  .btnContainer a {
+    text-decoration: none;
+  }
+  .btnContainer a:hover {
+    text-decoration: underline;
+  }
   button {
     background-color: var(--bgColor);
     border: none;
     font-family: var(--mainFont);
     padding: 0;
     font-size: 16px;
-    text-decoration: underline;
   }
   button:hover {
     cursor: pointer;
+    text-decoration: underline;
   }
 </style>
 
@@ -113,7 +119,7 @@ import BaseLayout from "./BaseLayout.astro";
       <!-- <li>{new Date(frontmatter.pubDate).getFullYear()}</li> -->
     </ul>
     <p>{frontmatter.description}</p>
-    <div class="link-container">
+    <div class="link-container" style={`display: ${frontmatter.links?.length ? "flex" : "none"}`}>
       {
         frontmatter.links.map((link: any, index: number) => (
           <a href={link} target="_blank" rel="noopener noreferrer">
@@ -122,6 +128,7 @@ import BaseLayout from "./BaseLayout.astro";
         ))
       }
     </div>
+    <div><a href="/">[<--]</a></div>
   </div>
   <div class="mdContainer">
     <Image
