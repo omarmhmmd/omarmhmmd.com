@@ -72,12 +72,19 @@ body {
   background-color: var(--bgColor);
 }
 
+sup {
+  vertical-align: top;
+  line-height: 1;
+  position: relative;
+}
+
 img {
   border: 0.25px solid black;
 }
 
 a {
   color: black;
+  word-break: break-all; /* Ensures long links break */
 }
 
 p,
