@@ -85,7 +85,6 @@ img,iframe {
 
 a {
   color: black;
-  word-break: break-all; /* Ensures long links break */
 }
 
 p,
