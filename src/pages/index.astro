@@ -1,9 +1,11 @@
 ---
 import GetWork from "../components/GetWork.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
 const title = "";
-const meta = "عمر محمد Omar Mohammad designs, researches, and works with Afghan & Islamic culture: architecture, materials, symbols, technology, and love."
-import image from "../images/me.jpg"
+const meta =
+  "عمر محمد Omar Mohammad designs, researches, and works with Afghan & Islamic culture: architecture, materials, symbols, technology, and love.";
+import image from "../images/me.jpg";
 import { getCollection } from "astro:content";
 const allWork = await getCollection("work");
 
@@ -17,13 +19,27 @@ allWork.sort((a, b) => {
 
 <style>
   div {
-    margin-left: var(--m-1);
+    margin: var(--m-1);
   }
   a {
+    display: inline-block; /* Prevents full-width stretching */
+    max-width: fit-content; /* Ensures it only takes up necessary space */
     text-decoration: none;
   }
-  a:hover{
+  a:hover {
     text-decoration: underline;
+  }
+  li {
+    /* margin-bottom: var(--m-1); */
+  }
+  img {
+    max-width: calc(var(--maxWidth) / 1.25);
+    height: auto; /* Default to auto for responsiveness */
+    aspect-ratio: 1 / 1; /* Maintain a square shape */
+    object-fit: cover; /* Ensures the image covers the entire square */
+    display: block;
+    margin-top: var(--m-3);
+    margin-bottom: var(--m-3);
   }
 </style>
 
@@ -35,7 +51,11 @@ allWork.sort((a, b) => {
           <li>
             <a href={`/work/${post.id}/`}>
               {" "}
-              {post.data.description}{" "}
+              {/* <Image
+                src={post.data.image}
+                alt="A model of the Senj wood framing technique."
+              /> */}
+              {post.data.description}
             </a>
           </li>
         ))
