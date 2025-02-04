@@ -9,8 +9,8 @@ import BaseLayout from "./BaseLayout.astro";
     position: sticky;
     display: block;
     top: var(--m-1);
+    z-index: 1;
     margin-left: var(--m-1);
-    z-index: 2;
   }
   .frontMatter a {
     text-decoration: none;
@@ -30,6 +30,7 @@ import BaseLayout from "./BaseLayout.astro";
     margin-bottom: var(--m-2);
     align-items: flex-start; /* Prevent stretching to container width */
   }
+
   a {
     display: inline-block; /* Ensures the anchor size matches its content */
     text-decoration: underline;
@@ -60,7 +61,6 @@ import BaseLayout from "./BaseLayout.astro";
     flex-direction: column;
     margin-top: var(--m-2);
     margin-bottom: var(--m-1);
-    z-index: 1;
   }
   @media (max-width: 1172px) {
     .mdContainer {
@@ -72,6 +72,8 @@ import BaseLayout from "./BaseLayout.astro";
     display: flex;
     flex-direction: column;
     max-width: var(--maxWidth);
+    z-index: 1;
+
   }
   .btnContainer {
     margin: var(--m-2) 0;
