@@ -54,6 +54,7 @@ ul {
   --m-0: 36px;
   --m-1: 24px;
   --m-2: 16px;
+  --m-4: 12px;
   --m-3: 4px;
   --lh-1: 1.325;
   --mainFont: "serif";
@@ -78,7 +79,7 @@ sup {
   position: relative;
 }
 
-img {
+img,iframe {
   border: 0.25px solid black;
 }
 
