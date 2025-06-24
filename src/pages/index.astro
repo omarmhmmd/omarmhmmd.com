@@ -53,7 +53,7 @@ allWork.sort((a, b) => {
           <a href={`/work/${post.id}/`}>
             <Image
               src={post.data.image}
-              alt="A model of the Senj wood framing technique."
+              alt={post.data.imgAlt}
             />
           </a>
           <a href={`/work/${post.id}/`}>{post.data.description}</a>
