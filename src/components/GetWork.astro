@@ -1,5 +1,5 @@
 ---
-const { posts } = Astro.props;
+const { posts, post } = Astro.props;
 ---
 
 <style>
@@ -20,20 +20,31 @@ const { posts } = Astro.props;
   li {
     margin-right: 4px;
   }
+
 </style>
 
 <div>
-  <ul>
-    {
-      posts.map((post: any) => (
-        <li>
-          <a href={`/work/${post.id}/`}>
-            {" "}
-            {post.data.title}{" "}
-            {post.data.tags.map((tag: any) => `[${tag}]`).join(" ")}{" "}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+  {post ? (
+    <!-- Single post display -->
+    <div class="single-post">
+      <a href={`/work/${post.id}/`}>
+        {post.data.title} {post.data.tags.map((tag: any) => `[${tag}]`).join(" ")}
+      </a>
+    </div>
+  ) : (
+    <!-- Multiple posts display -->
+    <ul>
+      {
+        posts.map((post: any) => (
+          <li>
+            <a href={`/work/${post.id}/`}>
+              {" "}
+              {post.data.title}{" "}
+              {post.data.tags.map((tag: any) => `[${tag}]`).join(" ")}{" "}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  )}
 </div>

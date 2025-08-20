@@ -38,7 +38,7 @@ allWork.sort((a, b) => {
     text-decoration: underline;
   }
   img {
-    width: 36px;
+    width: 48px;
     aspect-ratio: 1 / 1; /* Maintain a square shape */
     object-fit: cover; /* Ensures the image covers the entire square */
     display: block;
@@ -51,12 +51,10 @@ allWork.sort((a, b) => {
       allWork.map((post: any) => (
         <li>
           <a href={`/work/${post.id}/`}>
-            <Image
-              src={post.data.image}
-              alt={post.data.imgAlt}
-            />
+            <Image src={post.data.image} alt={post.data.imgAlt} />
           </a>
-          <a href={`/work/${post.id}/`}>{post.data.description}</a>
+          <GetWork post={post} />
+          {/* <a href={`/work/${post.id}/`}>{post.data.description}</a> */}
         </li>
       ))
     }

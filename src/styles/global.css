@@ -60,7 +60,7 @@ ul {
   --mainFont: "serif";
   --mobile: 1172px;
   --smlFont: 14px;
-  --maxWidth: 550px;
+  --maxWidth: 75ch;
   --bgColor: #a19a90;
 }
 /* End variables */
