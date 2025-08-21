@@ -87,7 +87,9 @@ a {
   color: black;
 }
 
-p,
+p {
+  margin-bottom: 12px;
+}
 h1,
 h2,
 h5,
