@@ -12,12 +12,13 @@ const currentPath = Astro.url.pathname;
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={`https://omarmhmmd.com${currentPath}`} />
     <meta name="viewport" content="width=device-width" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="sitemap" href="/sitemap-0.xml" />
     <SEO
-    title={`${title ? `${title} | ` : ""}Omar Mohammad`}
-    description={description}
+      title={`${title ? `${title} | ` : ""}Omar Mohammad`}
+      description={description}
       openGraph={{
         basic: {
           title: title || "Omar Mohammad", // Ensure 'title' is always defined
@@ -35,7 +36,10 @@ const currentPath = Astro.url.pathname;
             name: "twitter:image",
             content: image,
           },
-          { name: "twitter:title", content: `${title ? `${title} | ` : ""}Omar Mohammad` },
+          {
+            name: "twitter:title",
+            content: `${title ? `${title} | ` : ""}Omar Mohammad`,
+          },
           { name: "twitter:description", content: description },
           { name: "twitter:card", content: "summary_large_image" },
         ],
