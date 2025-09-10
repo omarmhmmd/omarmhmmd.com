@@ -56,21 +56,24 @@ ul {
   --m-2: 16px;
   --m-4: 12px;
   --m-3: 4px;
-  --lh-1: 1.325;
-  --mainFont: "serif";
+  --lh-1: 1.375;
+  --mainFont: serif;
   --mobile: 1172px;
-  --smlFont: 14px;
+  --smlFont: 15px;
   --maxWidth: 75ch;
-  --bgColor: #a19a90;
+  --bgColor: white;
+  /* --txtColor: rgb(65, 51, 14); */
+  --txtColor: black;
 }
 /* End variables */
 
 /* Global CSS */
 body {
   font-family: var(--mainFont);
-  font-size: 16px;
+  font-size: 17px;
   line-height: var(--lh-1);
   background-color: var(--bgColor);
+  color: var(--txtColor);
 }
 
 sup {
@@ -80,11 +83,11 @@ sup {
 }
 
 img,iframe {
-  border: 0.25px solid black;
+  outline: 0.25px solid var(--txtColor);
 }
 
 a {
-  color: black;
+  color: var(--txtColor);
 }
 
 p {
@@ -109,7 +112,7 @@ hr {
   border: none;
   height: 0.5px;
   /* Set the hr color */
-  background-color: black; /* Modern Browsers */
+  background-color: var(--txtColor); /* Modern Browsers */
 }
 /* End Global CSS */
 

@@ -2,6 +2,7 @@
 import GetWork from "../components/GetWork.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
+import { Content } from "./info/info.mdx";
 const title = "";
 const meta =
   "عمر محمد Omar Mohammad designs, researches, and works with Afghan & Islamic culture: architecture, materials, symbols, technology, and love.";
@@ -38,15 +39,19 @@ allWork.sort((a, b) => {
     text-decoration: underline;
   }
   img {
-    width: 48px;
+    width: 64px;
     aspect-ratio: 1 / 1; /* Maintain a square shape */
     object-fit: cover; /* Ensures the image covers the entire square */
     display: block;
   }
+  .md {
+    margin: var(--m-1);
+    max-width: var(--maxWidth);
+  }
 </style>
 
 <BaseLayout title={title} description={meta} image={image.src}>
-  <ul>
+  <!-- <ul>
     {
       allWork.map((post: any) => (
         <li>
@@ -58,5 +63,24 @@ allWork.sort((a, b) => {
         </li>
       ))
     }
-  </ul>
+  </ul> -->
+  
+  <div class="md">
+    <Content />
+  </div>
 </BaseLayout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Select all anchor tags
+    const anchorTags = document.querySelectorAll(".md a");
+    anchorTags.forEach((anchor) => {
+      const href = anchor.getAttribute("href");
+      // Skip anchor links (e.g., href="#some-id")
+      if (href) {
+        anchor.setAttribute("target", "_blank");
+        anchor.setAttribute("rel", "noopener noreferrer");
+      }
+    });
+  });
+</script>
