@@ -59,7 +59,7 @@ ul {
   --lh-1: 1.375;
   --mainFont: serif;
   --mobile: 1172px;
-  --smlFont: 15px;
+  --smlFont: 16px;
   --maxWidth: 75ch;
   --bgColor: white;
   /* --txtColor: rgb(65, 51, 14); */
@@ -70,7 +70,7 @@ ul {
 /* Global CSS */
 body {
   font-family: var(--mainFont);
-  font-size: 17px;
+  font-size: 18px;
   line-height: var(--lh-1);
   background-color: var(--bgColor);
   color: var(--txtColor);
