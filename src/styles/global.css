@@ -92,6 +92,7 @@ a {
 
 p {
   margin-bottom: 12px;
+  
 }
 h1,
 h2,
@@ -151,6 +152,12 @@ ol li::before {
 }
 
 @media (max-width: 1172px) {
+  /* Justify text on mobile */
+  p {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  
   .data-footnote-backref {
     pointer-events: auto;
     visibility: hidden;
